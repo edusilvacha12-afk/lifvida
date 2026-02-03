@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitVida - Plano Completo de Exercícios, Alimentação e Musculação</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f5f5f5;color:#333;}
+header{background:#4CAF50;color:white;padding:30px 0;text-align:center;}
+header h1{font-size:2.5em;}
+header p{font-size:1.2em;margin-top:10px;}
+header button{padding:10px 20px;margin-top:20px;background:#FF9800;border:none;color:white;font-size:1em;cursor:pointer;border-radius:5px;}
+section{padding:50px 20px;max-width:1000px;margin:auto;}
+h2{color:#4CAF50;margin-bottom:20px;text-align:center;}
+form{display:flex;flex-direction:column;align-items:center;margin-top:20px;}
+form input{padding:10px;margin:10px 0;width:200px;border-radius:5px;border:1px solid #ccc;}
+form button{padding:10px 20px;background:#4CAF50;color:white;border:none;cursor:pointer;border-radius:5px;}
+.exercicio, .alimentacao, .musculacao, .curiosidade, .duracao{background:white;padding:20px;margin-bottom:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);position:relative;}
+.exercicio h3::before{content:'\f44b';font-family:'Font Awesome 6 Free';font-weight:900;color:#FF9800;margin-right:10px;}
+.alimentacao h3::before{content:'\f2e7';font-family:'Font Awesome 6 Free';font-weight:900;color:#4CAF50;margin-right:10px;}
+.exercicio h3, .alimentacao h3, .musculacao h3, .curiosidade h3, .duracao h3{margin-bottom:10px;}
+.exercicio p, .alimentacao p, .musculacao p, .curiosidade p, .duracao p{margin-bottom:5px;}
+ul{list-style:none;padding-left:0;}
+ul li{background:white;margin:10px 0;padding:15px;border-radius:5px;box-shadow:0 0 5px rgba(0,0,0,0.1);}
+#topBtn{display:none;position:fixed;bottom:30px;right:30px;z-index:99;font-size:18px;border:none;outline:none;background-color:#FF9800;color:white;cursor:pointer;padding:15px;border-radius:50%;}
+canvas{max-width:100%;margin-top:20px;}
+.musculacao.iniciante{border-left:8px solid #FF9800;}
+.musculacao.intermediario{border-left:8px solid #FFA500;}
+.musculacao.avancado{border-left:8px solid #4CAF50;}
+.duracao.iniciante{border-left:8px solid #FF9800;}
+.duracao.intermediario{border-left:8px solid #FFA500;}
+.duracao.avancado{border-left:8px solid #4CAF50;}
+.curiosidade h3::before{content:'\f06a';font-family:'Font Awesome 6 Free';font-weight:900;color:#FF9800;margin-right:10px;}
+@media(max-width:768px){header h1{font-size:2em;} form input{width:150px;}}
+</style>
+</head>
+<body>
+<header>
+<h1>FitVida</h1>
+<p>Transforme seu corpo com exercícios, alimentação e musculação em casa!</p>
+<button onclick="document.getElementById('formulario').scrollIntoView({behavior:'smooth'})">Comece Agora</button>
+</header>
+
+<section id="formulario">
+<h2>Seu Plano Personalizado</h2>
+<form id="userForm">
+<input type="number" id="peso" placeholder="Seu peso (kg)" required min="4">
+<input type="number" id="idade" placeholder="Sua idade (anos)" required min="4" max="60">
+<button type="submit">Gerar Meu Plano</button>
+</form>
+</section>
+
+<section id="exercicios">
+<h2>Exercícios Personalizados</h2>
+<div id="exercicioContainer"></div>
+</section>
+
+<section id="alimentacao">
+<h2>Plano de Alimentação</h2>
+<div id="alimentacaoContainer"></div>
+</section>
+
+<section id="musculacao">
+<h2>Musculação em Casa</h2>
+<div id="musculacaoContainer">
+<div class="musculacao iniciante">
+<h3>Iniciante</h3>
+<p>Agachamento com peso corporal - 3x15</p>
+<p>Flexão de braço apoiada nos joelhos - 3x10</p>
+<p>Elevação de panturrilha - 3x15</p>
+<p><strong>Frequência:</strong> 3x por semana</p>
+</div>
+<div class="musculacao intermediario">
+<h3>Intermediário</h3>
+<p>Agachamento com garrafas de água - 3x12</p>
+<p>Flexão de braço normal - 3x12</p>
+<p>Remada com mochila pesada - 3x12</p>
+<p><strong>Frequência:</strong> 3-4x por semana</p>
+</div>
+<div class="musculacao avancado">
+<h3>Avançado</h3>
+<p>Agachamento com mochila pesada - 3x12</p>
+<p>Flexão de braço declinada - 3x10</p>
+<p>Prancha com variações - 3x30s</p>
+<p><strong>Frequência:</strong> 4-5x por semana</p>
+</div>
+</div>
+</section>
+
+<section id="duracao">
+<h2>Plano de Duração</h2>
+<div class="duracao iniciante">
+<h3>Iniciante</h3>
+<p>Duração recomendada: 4 semanas</p>
+<p>Exercícios: 3x por semana</p>
+<p>Alimentação: seguir diariamente conforme plano</p>
+</div>
+<div class="duracao intermediario">
+<h3>Intermediário</h3>
+<p>Duração recomendada: 6-8 semanas</p>
+<p>Exercícios: 3-4x por semana</p>
+<p>Alimentação: seguir diariamente conforme plano</p>
+</div>
+<div class="duracao avancado">
+<h3>Avançado</h3>
+<p>Duração recomendada: 8-12 semanas</p>
+<p>Exercícios: 4-5x por semana</p>
+<p>Alimentação: seguir diariamente conforme plano</p>
+</div>
+</section>
+
+<section id="curiosidades">
+<h2>Curiosidades sobre o Corpo Humano</h2>
+<div class="curiosidade"><h3>O coração bate mais de 100 mil vezes por dia!</h3></div>
+<div class="curiosidade"><h3>Os músculos queimam calorias mesmo em repouso.</h3></div>
+<div class="curiosidade"><h3>O cérebro consome cerca de 20% da energia do corpo.</h3></div>
+<div class="curiosidade"><h3>A pele é o maior órgão do corpo.</h3></div>
+<div class="curiosidade"><h3>O corpo humano tem cerca de 60.000 milhas de vasos sanguíneos.</h3></div>
+<div class="curiosidade"><h3>A respiração profunda ativa músculos importantes e reduz o estresse.</h3></div>
+</section>
+
+<section id="dicas">
+<h2>Dicas de Alimentação e Bem-Estar</h2>
+<ul>
+<li><input type="checkbox"> Inclua proteínas, frutas, vegetais e grãos integrais na alimentação.</li>
+<li><input type="checkbox"> Beba pelo menos 2 litros de água diariamente.</li>
+<li><input type="checkbox"> Durma de 7 a 9 horas por noite.</li>
+<li><input type="checkbox"> Registre seu peso e medidas semanalmente.</li>
+<li><input type="checkbox"> Mantenha consistência nos exercícios para ver resultados.</li>
+</ul>
+</section>
+
+<section id="progresso">
+<h2>Registro de Progresso</h2>
+<form id="progressForm">
+<input type="number" id="pesoAtual" placeholder="Peso Atual (kg)" required>
+<button type="submit">Adicionar ao Progresso</button>
+</form>
+<canvas id="graficoProgresso" width="400" height="200"></canvas>
+</section>
+
+<button onclick="topFunction()" id="topBtn" title="Voltar ao topo">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let topButton=document.getElementById("topBtn");
+window.onscroll=function(){scrollFunction()};
+function scrollFunction(){if(document.body.scrollTop>300||document.documentElement.scrollTop>300){topButton.style.display="block";}else{topButton.style.display="none";}}
+function topFunction(){document.body.scrollTop=0;document.documentElement.scrollTop=0;}
+const form=document.getElementById('userForm');
+const container=document.getElementById('exercicioContainer');
+const alimContainer=document.getElementById('alimentacaoContainer');
+form.addEventListener('submit',function(e){e.preventDefault();const peso=parseInt(document.getElementById('peso').value);const idade=parseInt(document.getElementById('idade').value);container.innerHTML='';alimContainer.innerHTML='';let exercicios=[], alimentacao=[];
+if(idade>=4 && idade<=12){exercicios=[['Pular corda','3x1 min','Intervalo de 30 segundos.'],['Corrida leve / brincadeira ativa','5-10 min','Movimente-se com diversão.'],['Saltos alternados','3x10','Mantenha joelhos flexionados.'],['Jogo de pega-pega','10 min','Atividade divertida e ativa.']];alimentacao=['Frutas e vegetais 3x/dia','Leite ou derivados 2x/dia','Pequenas porções de proteína 1-2x/dia','Evitar doces em excesso'];}else if(idade>=13 && idade<=17){exercicios=[['Agachamento sem peso','3x15','Mantenha a postura correta.'],['Flexão de braço','3x10','Apoie os joelhos se necessário.'],['Caminhada rápida / corrida leve','10-15 min','Ajuste o ritmo conforme capacidade.'],['Abdominal básico','3x15','Respire corretamente.']];alimentacao=['Refeições balanceadas 3x/dia','Lanches saudáveis 1-2x/dia','Proteínas magras em todas as refeições','Evitar frituras e refrigerantes'];}else if(idade>=18 && idade<=60){if(peso<75){exercicios=[['Caminhada rápida','20-30 min','Mantenha postura correta.'],['Agachamento com peso corporal','3x12','Evite curvar a coluna.'],['Flexão de braço','3x10','Ajuste intensidade conforme necessidade.'],['Abdominal básico','3x15','Respire corretamente.']];}else if(peso>=75 && peso<100){exercicios=[['Caminhada leve','20 min','Evite corrida no início.'],['Agachamento sem peso','3x10','Movimentos lentos e controlados.'],['Bicicleta ergométrica','15-20 min','Ritmo confortável.'],['Alongamento completo','10 min','Evite movimentos bruscos.']];}else{exercicios=[['Caminhada leve','15 min','Evite impactos fortes.'],['Alongamentos suaves','10 min','Foque na flexibilidade.'],['Exercícios na água','15-20 min','Reduz impacto nas articulações.'],['Subir escadas devagar','5-10 min','Faça pausas quando necessário.']];}alimentacao=['Café da manhã saudável','Almoço balanceado 3x/dia','Jantar leve','Lanches nutritivos 1-2x/dia','Evitar excesso de açúcar e frituras'];}
+exercicios.forEach(ex=>{const div=document.createElement('div');div.className='exercicio';div.innerHTML=`<h3>${ex[0]}</h3><p><strong>Séries/Repetições:</strong> ${ex[1]}</p><p><strong>Dicas:</strong> ${ex[2]}</p><button onclick='marcarFeito(this)'>Marcar como feito</button>`;container.appendChild(div);});
+alimentacao.forEach(item=>{const div=document.createElement('div');div.className='alimentacao';div.innerHTML=`<h3>Comida / Refeição</h3><p>${item}</p><p><strong>Frequência:</strong> ${item.includes('1-2x')?'1 a 2 vezes por dia':'3 vezes por dia'}</p>`;alimContainer.appendChild(div);});container.scrollIntoView({behavior:'smooth'});});
+function marcarFeito(btn){btn.parentElement.style.background='#d4edda';btn.innerText='Feito';btn.disabled=true;}
+const progressForm=document.getElementById('progressForm');
+const ctx=document.getElementById('graficoProgresso').getContext('2d');
+let dataPesos=[];let labels=[];
+const grafico=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:'Peso (kg)',data:dataPesos,borderColor:'#FF9800',fill:false}]},options:{responsive:true,scales:{y:{beginAtZero:false}}}});
+progressForm.addEventListener('submit',function(e){e.preventDefault();const pesoAtual=parseFloat(document.getElementById('pesoAtual').value);if(!isNaN(pesoAtual)){dataPesos.push(pesoAtual);labels.push('Semana '+dataPesos.length);grafico.update();document.getElementById('pesoAtual').value='';}});
+</script>
+</body>
+</html>
